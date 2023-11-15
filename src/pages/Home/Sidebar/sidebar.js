@@ -1,6 +1,9 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./sidebar.css";
 import Welcome from "../Welcome/welcome";
+import Recommend from "../Recommend/recommend";
+import Artists from "../Artists/Artists";
 const Sidebar = () => {
   return (
     <div>
@@ -10,7 +13,7 @@ const Sidebar = () => {
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
               <a
                 href="/"
-                class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+                class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none anchor"
               >
                 <span class="fs-5 d-none d-sm-inline">
                   <h1>VibeVerse</h1>
@@ -21,7 +24,7 @@ const Sidebar = () => {
                 id="menu"
               >
                 <li class="nav-item">
-                  <a href="#" class="nav-link align-middle px-0">
+                  <a href="#" class="nav-link align-middle px-0 anchor">
                     <i class="fs-4 bi-house text-white"></i>{" "}
                     <span class="ms-1 d-none d-sm-inline items-nav">Home</span>
                   </a>
@@ -31,7 +34,7 @@ const Sidebar = () => {
                   <a
                     href="#submenu1"
                     data-bs-toggle="collapse"
-                    class="nav-link px-0 align-middle"
+                    class="nav-link px-0 align-middle anchor"
                   >
                     <i class="fs-4 bi-search text-white"></i>{" "}
                     <span class="ms-1 d-none d-sm-inline items-nav">
@@ -41,7 +44,7 @@ const Sidebar = () => {
                 </li>
                 <div class="box"></div>
                 <li>
-                  <a href="#" class="nav-link px-0 align-middle">
+                  <a href="#" class="nav-link px-0 align-middle anchor">
                     <i class="fs-4 bi-heart text-white"></i>{" "}
                     <span class="ms-1 d-none d-sm-inline items-nav">
                       Favourites
@@ -53,7 +56,7 @@ const Sidebar = () => {
                   <a
                     href="#submenu2"
                     data-bs-toggle="collapse"
-                    class="nav-link px-0 align-middle "
+                    class="nav-link px-0 align-middle anchor"
                   >
                     <i class="fs-4 bi-person text-white"></i>{" "}
                     <span class="ms-1 d-none d-sm-inline items-nav">
@@ -67,7 +70,7 @@ const Sidebar = () => {
                 <div class="box" style={{ marginBottom: "10px" }}></div>
                 <a
                   href="#"
-                  class="d-flex align-items-center text-white text-decoration-none "
+                  class="d-flex align-items-center text-white text-decoration-none anchor"
                   aria-expanded="false"
                 >
                   {/* <img
@@ -98,6 +101,8 @@ const Sidebar = () => {
               }}
             >
               <Welcome />
+              <Recommend />
+              <Artists />
             </div>
           </div>
         </div>
