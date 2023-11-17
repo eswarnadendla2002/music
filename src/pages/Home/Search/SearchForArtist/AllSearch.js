@@ -3,13 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "../../Search/Search.css";
 import AllSe from "./AllSe";
-// import { BeatLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 
-// const LoadingSpinner = () => (
-//   <div className="loading-spinner">
-//     <BeatLoader color="#d1793b" size={30} className="BeatLoader" />
-//   </div>
-// );
+const LoadingSpinner = () => (
+  <div className="loading-spinner">
+    <BeatLoader color="#d1793b" size={30} className="BeatLoader" />
+  </div>
+);
 
 function AllSearch() {
   const navigate = useNavigate();
@@ -161,7 +161,7 @@ function AllSearch() {
                 </h1>
               </span>
               <br />
-              {/* {loading ? <LoadingSpinner /> : <AllSe />} */}
+              {loading ? <LoadingSpinner /> : <AllSe />}
             </div>
           </div>
         </div>

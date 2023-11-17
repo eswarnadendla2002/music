@@ -134,6 +134,11 @@ const Sidebar = () => {
                 height: "100%",
               }}
             >
+              <span>
+                <h1 style={{ textAlign: "center", fontSize: "100px" }}>
+                  Favourites
+                </h1>
+              </span>
               <FavMain />
             </div>
           </div>
