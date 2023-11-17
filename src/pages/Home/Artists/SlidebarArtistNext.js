@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./sidebar.css";
-import Welcome from "../Welcome/welcome";
-import Recommend from "../Recommend/recommend";
-import { useNavigate, useLocation, Link } from "react-router-dom";
-import Artists from "../Artists/Artists";
-import Search from "../Search/Search";
-const Sidebar = () => {
+// import "./sidebar.css";
+
+import { useNavigate, useLocation } from "react-router-dom";
+
+import ArtistNext from "./ArtistNext";
+const SlidebarArtistNext = () => {
   const navigate = useNavigate();
   const location = useLocation();
   let username = location.state ? location.state.username : null;
@@ -16,17 +15,13 @@ const Sidebar = () => {
     username = "";
     navigate("/");
   };
-
-  const handleSearch = () => {
-    navigate("/search", { state: { username } });
+  const handleMenuClick = (menu) => {
+    setActiveMenu(menu);
   };
 
   const handleHome = () => {
+    handleMenuClick("Home");
     navigate("/home", { state: { username } });
-  };
-
-  const handleProfile = () => {
-    navigate("/profile", { state: { username } });
   };
   return (
     <div>
@@ -48,8 +43,8 @@ const Sidebar = () => {
               >
                 <li class="nav-item">
                   <a
-                    href={() => {
-                      handleHome();
+                    onClick={() => {
+                      navigate("/home", { state: { username } });
                     }}
                     class="nav-link align-middle px-0 anchor"
                   >
@@ -60,9 +55,11 @@ const Sidebar = () => {
                 <div class="box"></div>
                 <li>
                   <a
+                    onClick={() => {
+                      navigate("/search", { state: { username } });
+                    }}
                     data-bs-toggle="collapse"
                     class="nav-link px-0 align-middle anchor"
-                    onClick={() => handleSearch()}
                   >
                     <i class="fs-4 bi-search text-white"></i>{" "}
                     <span class="ms-1 d-none d-sm-inline items-nav">
@@ -72,12 +69,7 @@ const Sidebar = () => {
                 </li>
                 <div class="box"></div>
                 <li>
-                  <a
-                    onClick={() => {
-                      navigate("/favourites", { state: { username } });
-                    }}
-                    class="nav-link px-0 align-middle anchor"
-                  >
+                  <a class="nav-link px-0 align-middle anchor">
                     <i class="fs-4 bi-heart text-white"></i>{" "}
                     <span class="ms-1 d-none d-sm-inline items-nav">
                       Favourites
@@ -87,9 +79,11 @@ const Sidebar = () => {
                 <div class="box"></div>
                 <li>
                   <a
+                    onClick={() => {
+                      navigate("/profile", { state: { username } });
+                    }}
                     data-bs-toggle="collapse"
                     class="nav-link px-0 align-middle anchor"
-                    onClick={() => handleProfile()}
                   >
                     <i class="fs-4 bi-person text-white"></i>{" "}
                     <span class="ms-1 d-none d-sm-inline items-nav">
@@ -136,9 +130,7 @@ const Sidebar = () => {
                 height: "100%",
               }}
             >
-              <Welcome />
-              <Recommend />
-              <Artists />
+              <ArtistNext />
             </div>
           </div>
         </div>
@@ -147,4 +139,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SlidebarArtistNext;

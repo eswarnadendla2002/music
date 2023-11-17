@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./sidebar.css";
-import Welcome from "../Welcome/welcome";
-import Recommend from "../Recommend/recommend";
+
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import Artists from "../Artists/Artists";
-import Search from "../Search/Search";
-const Sidebar = () => {
+
+import ArtistSlide from "./Artist_Slide";
+const SidebarArtistSlide = () => {
   const navigate = useNavigate();
   const location = useLocation();
   let username = location.state ? location.state.username : null;
 
+  console.log(username);
   const [activeMenu, setActiveMenu] = useState("Home");
   const handleLogout = () => {
     username = "";
@@ -28,6 +27,8 @@ const Sidebar = () => {
   const handleProfile = () => {
     navigate("/profile", { state: { username } });
   };
+
+  console.log(username);
   return (
     <div>
       <div class="container-fluid">
@@ -48,7 +49,7 @@ const Sidebar = () => {
               >
                 <li class="nav-item">
                   <a
-                    href={() => {
+                    onClick={() => {
                       handleHome();
                     }}
                     class="nav-link align-middle px-0 anchor"
@@ -136,9 +137,7 @@ const Sidebar = () => {
                 height: "100%",
               }}
             >
-              <Welcome />
-              <Recommend />
-              <Artists />
+              <ArtistSlide />
             </div>
           </div>
         </div>
@@ -147,4 +146,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarArtistSlide;

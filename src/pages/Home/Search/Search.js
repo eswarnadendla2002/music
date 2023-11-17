@@ -1,33 +1,30 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./sidebar.css";
-import Welcome from "../Welcome/welcome";
-import Recommend from "../Recommend/recommend";
-import { useNavigate, useLocation, Link } from "react-router-dom";
-import Artists from "../Artists/Artists";
-import Search from "../Search/Search";
-const Sidebar = () => {
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import "./Search.css";
+
+function Search() {
   const navigate = useNavigate();
   const location = useLocation();
   let username = location.state ? location.state.username : null;
-
-  const [activeMenu, setActiveMenu] = useState("Home");
+  console.log(username);
   const handleLogout = () => {
     username = "";
     navigate("/");
   };
 
-  const handleSearch = () => {
-    navigate("/search", { state: { username } });
+  const handleProfile = () => {
+    navigate("/profile", { state: { username } });
   };
 
   const handleHome = () => {
     navigate("/home", { state: { username } });
   };
 
-  const handleProfile = () => {
-    navigate("/profile", { state: { username } });
+  const handleSearch = () => {
+    navigate("/search", { state: { username } });
   };
+
   return (
     <div>
       <div class="container-fluid">
@@ -48,29 +45,27 @@ const Sidebar = () => {
               >
                 <li class="nav-item">
                   <a
-                    href={() => {
-                      handleHome();
-                    }}
                     class="nav-link align-middle px-0 anchor"
+                    onClick={() => handleHome()}
                   >
                     <i class="fs-4 bi-house text-white"></i>{" "}
-                    <span class="ms-1 d-none d-sm-inline items-nav">Home</span>
+                    <span class="ms-1 d-none d-sm-inline items-nav1">Home</span>
                   </a>
                 </li>
-                <div class="box"></div>
+                <div class="box1"></div>
                 <li>
                   <a
+                    onClick={() => handleSearch()}
                     data-bs-toggle="collapse"
                     class="nav-link px-0 align-middle anchor"
-                    onClick={() => handleSearch()}
                   >
                     <i class="fs-4 bi-search text-white"></i>{" "}
-                    <span class="ms-1 d-none d-sm-inline items-nav">
+                    <span class="ms-1 d-none d-sm-inline items-nav1">
                       Search
                     </span>{" "}
                   </a>
                 </li>
-                <div class="box"></div>
+                <div class="box1"></div>
                 <li>
                   <a
                     onClick={() => {
@@ -79,7 +74,7 @@ const Sidebar = () => {
                     class="nav-link px-0 align-middle anchor"
                   >
                     <i class="fs-4 bi-heart text-white"></i>{" "}
-                    <span class="ms-1 d-none d-sm-inline items-nav">
+                    <span class="ms-1 d-none d-sm-inline items-nav1">
                       Favourites
                     </span>
                   </a>
@@ -87,12 +82,14 @@ const Sidebar = () => {
                 <div class="box"></div>
                 <li>
                   <a
+                    onClick={() => {
+                      handleProfile();
+                    }}
                     data-bs-toggle="collapse"
                     class="nav-link px-0 align-middle anchor"
-                    onClick={() => handleProfile()}
                   >
                     <i class="fs-4 bi-person text-white"></i>{" "}
-                    <span class="ms-1 d-none d-sm-inline items-nav">
+                    <span class="ms-1 d-none d-sm-inline items-nav1">
                       Profile
                     </span>
                   </a>
@@ -110,14 +107,14 @@ const Sidebar = () => {
                   }}
                 >
                   {/* <img
-                    src="https://github.com/mdo.png"
-                    alt="hugenerd"
-                    width="30"
-                    height="30"
-                    class="rounded-circle"
-                  /> */}
+                src="https://github.com/mdo.png"
+                alt="hugenerd"
+                width="30"
+                height="30"
+                class="rounded-circle"
+              /> */}
                   <i class="fs-4 bi bi-box-arrow-left"></i>
-                  <span class="d-none d-sm-inline mx-1 items-nav">
+                  <span class="d-none d-sm-inline mx-1 items-nav1">
                     &nbsp;Log Out
                   </span>
                 </a>
@@ -125,7 +122,7 @@ const Sidebar = () => {
             </div>
           </div>
           <div
-            class="margin"
+            class="margin1"
             style={{ display: "flex", height: "100vh", width: "1275px" }}
           >
             <div
@@ -136,15 +133,44 @@ const Sidebar = () => {
                 height: "100%",
               }}
             >
-              <Welcome />
-              <Recommend />
-              <Artists />
+              <span>
+                <h1 style={{ textAlign: "center", fontSize: "100px" }}>
+                  Search
+                </h1>
+              </span>
+              <br />
+              <br />
+              <br />
+              <div style={{ textAlign: "center" }}>
+                <Button
+                  variant="success"
+                  className="me-5"
+                  onClick={() => {
+                    navigate("/artsearch", { state: { username } });
+                  }}
+                >
+                  <span>
+                    <h1>For Artists</h1>
+                  </span>
+                </Button>{" "}
+                <Button
+                  variant="danger"
+                  className="ms-5"
+                  onClick={() => {
+                    navigate("/allsearch", { state: { username } });
+                  }}
+                >
+                  <span>
+                    <h1>For Albums</h1>
+                  </span>
+                </Button>{" "}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default Sidebar;
+export default Search;
